@@ -11,6 +11,8 @@ soundfile = "*"
 numpy = "*"
 sklearn = "*"
 pyaudio = {path = "./PyAudio-0.2.11-cp37-cp37m-win_amd64.whl"}
+ipykernel = "*"
+jupyter = "*"
 
 [requires]
 python_version = "3.7"

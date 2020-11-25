@@ -17,6 +17,7 @@ matplotlib = "*"
 pydub = "*"
 keras = "*"
 tensorflow = "*"
+joblib = "*"
 
 [requires]
 python_version = "3.7"

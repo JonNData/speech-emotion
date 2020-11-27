@@ -4,8 +4,9 @@ from fastapi.templating import Jinja2Templates
 import numpy as np
 from speech import templates
 from joblib import load
+from speech.functions import *
 
-model = load('..\\mlpipeline.joblib')
+model = load('speech\\mlpipeline.joblib')
 app = FastAPI()
 
 # Tell the app where the static files are
@@ -20,12 +21,10 @@ async def root(request: Request):
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile=File(...)):
-    audio_sample = extract_audio_features(path, mfcc=True, chroma=True, mel=True)
+    audio_sample = extract_audio_features(file, mfcc=True, chroma=True, mel=True)
     audio_ready = np.array(audio_sample).reshape(1,-1)
-    
-
-    model.predict(audio_ready)
-    return {"filename": file.filename}
+    prediction = model.predict(audio_ready)
+    return {"prediction": str(prediction)}
 
 @app.post("/graph")
 async def graph():

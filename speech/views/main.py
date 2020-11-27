@@ -5,6 +5,7 @@ import numpy as np
 from speech import templates
 from joblib import load
 
+model = load('..\\mlpipeline.joblib')
 app = FastAPI()
 
 # Tell the app where the static files are
@@ -17,10 +18,15 @@ templates = Jinja2Templates(directory=".\\speech\\templates")
 async def root(request: Request):
     return {"message": "I feel the need for FastAPI"}
 
-@app.put("/predict")
-async def predict():
-    return {"message": "I feel the need for FastAPI"}
+@app.post("/uploadfile/")
+async def create_upload_file(file: UploadFile=File(...)):
+    audio_sample = extract_audio_features(path, mfcc=True, chroma=True, mel=True)
+    audio_ready = np.array(audio_sample).reshape(1,-1)
+    
 
-@app.put("/graph")
+    model.predict(audio_ready)
+    return {"filename": file.filename}
+
+@app.post("/graph")
 async def graph():
     return {"message": "I feel the need for FastAPI"}

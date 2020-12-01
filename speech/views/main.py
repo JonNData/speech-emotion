@@ -28,4 +28,28 @@ async def create_upload_file(file: UploadFile=File(...)):
 
 @app.post("/graph")
 async def graph():
-    return {"message": "I feel the need for FastAPI"}
+    ## Move this to a different module later
+    def vis_spec(audio_file):
+        y, sr = librosa.load(path=audio_file, sr=None)
+        plt.figure(figsize=(12, 8))
+
+        D = librosa.amplitude_to_db(librosa.stft(y), ref=np.max)
+        plt.subplot(4, 2, 1)
+
+        librosa.display.specshow(D, y_axis="linear")
+        plt.colorbar(format='%+2.0f dB')
+        plt.title('Linear-frequency power spectrogram')
+        plt.xlabel('Time')
+        plt.show
+
+    def vis_harm(audio_file):
+        y, sr = librosa.load(path=audio_file, sr=None)
+        y_harm, y_perc = librosa.effects.hpss(y)
+        plt.subplot(3, 1, 3)
+        librosa.display.waveplot(y_harm, sr=sr, alpha=0.25)
+        librosa.display.waveplot(y_perc, sr=sr, color='r', alpha=0.5)
+        plt.title('Harmonic + Percussive')
+        plt.tight_layout()
+
+    return {"spectrogram": vis_spec(file),
+            "Harmonics": vis_harm(file)}

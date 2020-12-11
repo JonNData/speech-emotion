@@ -2,9 +2,9 @@ from fastapi import FastAPI, Request, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import numpy as np
-# import templates
+import templates
 from joblib import load
-# from functions import *
+from functions import *
 
 model = load('speech\\mlpipeline.joblib')
 app = FastAPI()

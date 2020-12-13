@@ -5,6 +5,12 @@ from fastapi.responses import HTMLResponse
 import numpy as np
 from joblib import load
 from functions import *
+import soundfile
+import librosa
+import librosa.display
+
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 model = load('.\\tutorial\\mlpipeline.joblib')
 
@@ -13,6 +19,8 @@ model = load('.\\tutorial\\mlpipeline.joblib')
 # Specifying a the var type here is akin to pydantic code
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
+
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile=File(...)):

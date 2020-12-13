@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Sparky!</title>
+  <title>Speech Emotion Detector</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{{ url_for('static', path='/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -70,10 +70,36 @@
       </nav>
 
       <div class="container-fluid">
-        <h1 class="mt-4">Sparky</h1>
+        <h1 class="mt-4">Speech Emotion Detector</h1>
         <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
         <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
       </div>
+
+    {% block content %}
+    <div class="container">
+        <div class="row">
+          <div class="col">
+      
+            <h2>Analyze an audio clip</h2>
+            <hr>
+      
+            <form action="/audioupload" method="POST" enctype="multipart/form-data">
+      
+              <div class="form-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="image" id="image">
+                  <label class="custom-file-label" for="image">Select audio file...</label>
+                </div>
+              </div>
+      
+              <button type="submit" class="btn btn-primary">Upload</button>
+      
+            </form>
+      
+          </div>
+        </div>
+      </div>
+    {% endblock %}
     </div>
     <!-- /#page-content-wrapper -->
 

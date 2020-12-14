@@ -26,7 +26,9 @@ async def root(request: Request):
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile=File(...)):
-    if file_name in ALLOWED_EXTENSIONS
+    if file.filename.split('.')[1] in ALLOWED_EXTENSIONS:
+        file.read()
+        # Figure out how to read it here and save it.
 
 async def predict(audio_file):
     audio_sample = extract_audio_features(file, mfcc=True, chroma=True, mel=True)

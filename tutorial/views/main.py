@@ -30,20 +30,17 @@ async def create_upload_file(file: UploadFile=File(...)):
     if file.filename.split('.')[1] in ALLOWED_EXTENSIONS:
         audio_file = await file.read()
         file.file.close()
+
+        # Save it to work with
+        with open('current.wav', mode='wb') as f:
+            f.write(audio_file)
         
-        audio_sample = extract_audio_features(file=audio_file, mfcc=True, chroma=True, mel=True)
+        # run the prediction on saved file
+        audio_sample = extract_audio_features('current.wav', mfcc=True, chroma=True, mel=True)
         audio_ready = np.array(audio_sample).reshape(1,-1)
         prediction = model.predict(audio_ready)
-        return {"prediction": str(prediction)}
-        # Figure out how to read it here and save it.
+        return {"prediction": str(prediction[0])}
 
-        # async def predict(audio_file):
-        #     audio_sample = extract_audio_features(file, mfcc=True, chroma=True, mel=True)
-        #     audio_ready = np.array(audio_sample).reshape(1,-1)
-        #     prediction = model.predict(audio_ready)
-        #     return {"prediction": str(prediction)}
-
-        # await predict(file.file)
 
 @app.post("/graph", response_class=HTMLResponse)
 async def graph():

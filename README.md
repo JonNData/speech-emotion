@@ -23,3 +23,5 @@ Next, we read in the data and train a model.
 After we evaluate the model we can use it for predicting the emotion of other audio clips.
 
 Note: file_name[6] refers to the gender of the speaker. Might it be a stretch to also predict the gender of a speaker?
+
+Current plan: ask for the upload, check file extension, save audio file, run predicitons and graphs, save graphs, display graphs and predictions

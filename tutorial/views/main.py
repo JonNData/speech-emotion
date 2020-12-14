@@ -4,13 +4,15 @@ from fastapi.responses import HTMLResponse
 
 import numpy as np
 from joblib import load
-from functions import *
+from functions import extract_audio_features
 import soundfile
 import librosa
 import librosa.display
 
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
+
+from config import ALLOWED_EXTENSIONS
 
 model = load('.\\tutorial\\mlpipeline.joblib')
 
@@ -24,6 +26,9 @@ async def root(request: Request):
 
 @app.post("/uploadfile/")
 async def create_upload_file(file: UploadFile=File(...)):
+    if file_name in ALLOWED_EXTENSIONS
+
+async def predict(audio_file):
     audio_sample = extract_audio_features(file, mfcc=True, chroma=True, mel=True)
     audio_ready = np.array(audio_sample).reshape(1,-1)
     prediction = model.predict(audio_ready)

@@ -73,9 +73,10 @@ async def create_upload_file(request: Request, file: UploadFile=File(...)):
         plt.tight_layout()
 
         plt.savefig('tutorial/static/user_assets/harmonic.png')
-
+        
         return {
-                 "prediction": str(prediction[0])
+                 "prediction": str(prediction[0]),
+                 "Please View the results at ": "/results"
                 }
 
 @app.get("/results", response_class=HTMLResponse)

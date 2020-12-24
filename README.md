@@ -1,5 +1,5 @@
 # Speech Emotion Detector
-View the video rundown ![here](https://www.linkedin.com/posts/jonathan-nguyen-94344b21_python-neuralnetwork-activity-6747693412549558272-Ow-Y)
+View the video rundown [here](https://www.linkedin.com/posts/jonathan-nguyen-94344b21_python-neuralnetwork-activity-6747693412549558272-Ow-Y)
 
 Detect emotion in an audio clip
 

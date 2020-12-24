@@ -1,5 +1,7 @@
-# speech-emotion
-detect emotion in an audio clip
+# Speech Emotion Detector
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6747692958310653953" height="590" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+Detect emotion in an audio clip
 
 Trained on Ryerson Audio-Visual Database of Emotional Speech and Song dataset.
 Audio clips from the RADVESS dataset are classified as: 
@@ -24,4 +26,7 @@ After we evaluate the model we can use it for predicting the emotion of other au
 
 Note: file_name[6] refers to the gender of the speaker. Might it be a stretch to also predict the gender of a speaker?
 
-Current plan: ask for the upload, check file extension, save audio file, run predicitons and graphs, save graphs, display graphs and predictions
+We can read in WAV files, preferrably in mono but conversion is handled as well.
+
+Steps: 
+Ask for the upload, check file extension, save audio file, run predicitons and graphs, save graphs, display graphs and predictions.

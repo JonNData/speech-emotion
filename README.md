@@ -30,3 +30,6 @@ We can read in WAV files, preferrably in mono but conversion is handled as well.
 
 Steps: 
 Ask for the upload, check file extension, save audio file, run predicitons and graphs, save graphs, display graphs and predictions.
+
+Potential extension:
+Have testing for filetypes, run it on AWS
